@@ -1,19 +1,19 @@
-import unittest
-from models.place import Place
+#!/usr/bin/python3
+"""Defines the Place class."""
 
-class TestPlace(unittest.TestCase):
-    def test_place_initialization(self):
-        place = Place()
-        self.assertIsInstance(place, Place)
+from models.base_model import BaseModel
 
-    def test_place_name(self):
-        place = Place(name="Cozy Cottage")
-        self.assertEqual(place.name, "Cozy Cottage")
-
-    def test_place_max_guest(self):
-        place = Place(max_guest=4)
-        self.assertEqual(place.max_guest, 4)
-
-if __name__ == "__main__":
-    unittest.main()
+class Place(BaseModel):
+    """Represents a place."""
+    city_id = ""
+    user_id = ""
+    name = ""
+    description = ""
+    number_rooms = 0
+    number_bathrooms = 0
+    max_guest = 0
+    price_by_night = 0
+    latitude = 0.0
+    longitude = 0.0
+    amenity_ids = []
 

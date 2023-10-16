@@ -1,15 +1,9 @@
-import unittest
-from models.amenity import Amenity
+#!/usr/bin/python3
+"""Defines the Amenity class."""
 
-class TestAmenity(unittest.TestCase):
-    def test_amenity_initialization(self):
-        amenity = Amenity()
-        self.assertIsInstance(amenity, Amenity)
+from models.base_model import BaseModel
 
-    def test_amenity_name(self):
-        amenity = Amenity(name="Pool")
-        self.assertEqual(amenity.name, "Pool")
-
-if __name__ == "__main__":
-    unittest.main()
+class Amenity(BaseModel):
+    """Represents an amenity."""
+    name = ""
 

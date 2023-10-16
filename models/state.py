@@ -1,15 +1,9 @@
-import unittest
-from models.state import State
+#!/usr/bin/python3
+"""Defines the State class."""
 
-class TestState(unittest.TestCase):
-    def test_state_initialization(self):
-        state = State()
-        self.assertIsInstance(state, State)
+from models.base_model import BaseModel
 
-    def test_state_name(self):
-        state = State(name="California")
-        self.assertEqual(state.name, "California")
-
-if __name__ == "__main__":
-    unittest.main()
+class State(BaseModel):
+    """Represents a state."""
+    name = ""
 

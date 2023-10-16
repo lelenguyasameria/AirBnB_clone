@@ -1,15 +1,10 @@
-import unittest
-from models.city import City
+#!/usr/bin/python3
+"""Defines the City class."""
 
-class TestCity(unittest.TestCase):
-    def test_city_initialization(self):
-        city = City()
-        self.assertIsInstance(city, City)
+from models.base_model import BaseModel
 
-    def test_city_name(self):
-        city = City(name="New York")
-        self.assertEqual(city.name, "New York")
-
-if __name__ == "__main__":
-    unittest.main()
+class City(BaseModel):
+    """Represents a city."""
+    state_id = ""
+    name = ""
 
