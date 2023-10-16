@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+<<<<<<< HEAD
 """Defines the City class."""
 from models.base_model import BaseModel
 
@@ -15,3 +16,13 @@ class City(BaseModel):
         self.name = ""
         self.state_id = ""
 
+=======
+"""Class that inherits from BaseModel"""
+from models.base_model import BaseModel
+
+
+class City(BaseModel):
+    """Class that inherits from BaseModel"""
+    state_id = ""
+    name = ""
+>>>>>>> origin/BNB
