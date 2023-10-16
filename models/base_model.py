@@ -2,6 +2,7 @@
 #!/usr/bin/python3
 """Defines base model classes for the Airbnb clone project."""
 
+import models
 from uuid import uuid4
 from datetime import datetime
 
