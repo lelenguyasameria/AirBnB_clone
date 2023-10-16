@@ -1,28 +1,15 @@
-#!/usr/bin/python3
-<<<<<<< HEAD
-"""Defines the City class."""
-from models.base_model import BaseModel
+import unittest
+from models.city import City
 
-class City(BaseModel):
-    """Represents a city where properties are located.
+class TestCity(unittest.TestCase):
+    def test_city_initialization(self):
+        city = City()
+        self.assertIsInstance(city, City)
 
-    Attributes:
-        name (str): The name of the city.
-        state_id (str): The ID of the state where the city is located.
-    """
+    def test_city_name(self):
+        city = City(name="New York")
+        self.assertEqual(city.name, "New York")
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.name = ""
-        self.state_id = ""
+if __name__ == "__main__":
+    unittest.main()
 
-=======
-"""Class that inherits from BaseModel"""
-from models.base_model import BaseModel
-
-
-class City(BaseModel):
-    """Class that inherits from BaseModel"""
-    state_id = ""
-    name = ""
->>>>>>> origin/BNB

@@ -1,25 +1,15 @@
-#!/usr/bin/python3
-<<<<<<< HEAD
-"""Defines the State class."""
-from models.base_model import BaseModel
+import unittest
+from models.state import State
 
-class State(BaseModel):
-    """Represents a state.
+class TestState(unittest.TestCase):
+    def test_state_initialization(self):
+        state = State()
+        self.assertIsInstance(state, State)
 
-    Attributes:
-        name (str): The name of the state.
-    """
+    def test_state_name(self):
+        state = State(name="California")
+        self.assertEqual(state.name, "California")
 
-    def __init__(self, *args, **kwargs):
+if __name__ == "__main__":
+    unittest.main()
 
-        self.name = ""
-
-=======
-"""Class that inherits from BaseModel"""
-from models.base_model import BaseModel
-
-
-class State(BaseModel):
-    """Class that inherits from BaseModel"""
-    name = ""
->>>>>>> origin/BNB

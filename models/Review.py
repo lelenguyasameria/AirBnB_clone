@@ -1,19 +1,19 @@
-#!/usr/bin/python3
-"""Defines the Review class."""
-from models.base_model import BaseModel
+import unittest
+from models.review import Review
 
-class Review(BaseModel):
-    """Represents a review of a property.
+class TestReview(unittest.TestCase):
+    def test_review_initialization(self):
+        review = Review()
+        self.assertIsInstance(review, Review)
 
-    Attributes:
-        place_id (str): The ID of the property being reviewed.
-        user_id (str): The ID of the user who wrote the review.
-        text (str): The text content of the review.
-    """
+    def test_review_text(self):
+        review = Review(text="Great place!")
+        self.assertEqual(review.text, "Great place!")
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.place_id = ""
-        self.user_id = ""
-        self.text = ""
+    def test_review_place_id(self):
+        review = Review(place_id="12345")
+        self.assertEqual(review.place_id, "12345")
+
+if __name__ == "__main__":
+    unittest.main()
 
