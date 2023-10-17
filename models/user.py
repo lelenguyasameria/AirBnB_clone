@@ -1,33 +1,15 @@
-#!/usr/bin/python3
-<<<<<<< HEAD
-"""Defines the User class."""
-from models.base_model import BaseModel
+import unittest
+from models.user import User
 
-class User(BaseModel):
-    """Represents a user of the Airbnb clone platform.
+class TestUser(unittest.TestCase):
+    def test_user_initialization(self):
+        user = User()
+        self.assertIsInstance(user, User)
 
-    Attributes:
-        email (str): The email address of the user.
-        password (str): The password of the user.
-        first_name (str): The first name of the user.
-        last_name (str): The last name of the user.
-    """
+    def test_user_email(self):
+        user = User(email="user@example.com")
+        self.assertEqual(user.email, "user@example.com")
 
-    def __init__(self, *args, **kwargs):
-        self.email = ""
-        self.password = ""
-        self.first_name = ""
-        self.last_name = ""
+if __name__ == "__main__":
+    unittest.main()
 
-=======
-"""Class User that inherits from BaseModel"""
-from models.base_model import BaseModel
-
-
-class User(BaseModel):
-    """Class User that inherits from BaseModel"""
-    email = ""
-    password = ""
-    first_name = ""
-    last_name = ""
->>>>>>> origin/BNB
