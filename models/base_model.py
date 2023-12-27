@@ -1,66 +1,115 @@
 #!/usr/bin/python3
 """
-Module containing the BaseModel class.
+Module containing the FileStorage class.
 """
 
-from datetime import datetime
-import uuid
+import json
+import os
 
-class BaseModel:
+class FileStorage:
     """
-    The BaseModel class for the AirBnB project.
+    The FileStorage class for the AirBnB project.
 
     Attributes:
-        id (str): The unique identifier of the instance.
-        created_at (datetime): The creation timestamp of the instance.
-        updated_at (datetime): The last update timestamp of the instance.
+        __file_path (str): The path to the JSON file.
+        __objects (dict): A dictionary to store serialized instances.
     """
 
-    def __init__(self, *args, **kwargs):
+    __file_path = "file.json"
+    __objects = {}
+
+    def all(self):
         """
-        Initialize a new BaseModel instance.
+        Retrieve the dictionary __objects.
+
+        Returns:
+            dict: The dictionary __objects.
+        """
+        return self.__objects
+
+    def new(self, obj):
+        """
+        Add a new object to the dictionary __objects.
 
         Args:
-            *args: Variable-length argument list (not used).
-            **kwargs: Variable-length keyword argument list.
-                Each key of this dictionary is an attribute name.
-                Each value of this dictionary is the value of the corresponding attribute name.
+            obj: The object to be added.
         """
-        if kwargs:
-            for key, value in kwargs.items():
-                if key == 'created_at' or key == 'updated_at':
-                    setattr(self, key, datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
-                elif key != '__class__':
-                    setattr(self, key, value)
-            if 'id' not in kwargs:
-                setattr(self, 'id', str(uuid.uuid4()))
-            if 'created_at' not in kwargs:
-                setattr(self, 'created_at', datetime.now())
-            if 'updated_at' not in kwargs:
-                setattr(self, 'updated_at', datetime.now())
-        else:
-            self.id = str(uuid.uuid4())
-            self.created_at = self.updated_at = datetime.now()
+        key = "{}.{}".format(obj.__class__.__name__, obj.id)
+        self.__objects[key] = obj
 
-    def to_dict(self):
+    def save(self):
         """
-        Return a dictionary representation of the instance.
+        Save the serialized objects to the JSON file.
+        """
+        with open(self.__file_path, mode="w", encoding="utf-8") as file:
+            json.dump({k: v.to_dict() for k, v in self.__objects.items()}, file)
 
-        Returns:
-            dict: A dictionary containing the instance attributes.
+    def reload(self):
         """
-        result_dict = self.__dict__.copy()
-        result_dict['__class__'] = self.__class__.__name__
-        result_dict['created_at'] = self.created_at.isoformat()
-        result_dict['updated_at'] = self.updated_at.isoformat()
-        return result_dict
+        Load serialized objects from the JSON file.
+        """
+        if os.path.exists(self.__file_path):
+            with open(self.__file_path, mode="r", encoding="utf-8") as file:
+                data = json.load(file)
+                for key, value in data.items():
+                    cls_name, obj_id = key.split(".")
+                    module = __import__("models." + cls_name, fromlist=[cls_name])
+                    self.__objects[key] = getattr(module, cls_name)(**value)
 
-    def __str__(self):
-        """
-        Return the string representation of the instance.
-
-        Returns:
-            str: A string representation of the instance.
-        """
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+B
+B
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+B
+B
+B
+B
+B
+B
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+A
+A
+A
 
